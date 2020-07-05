@@ -1,4 +1,9 @@
-import { ADD_CONTACT, SET_EDIT_CONTACT, CLEAR_CURRENT } from '../types';
+import {
+  ADD_CONTACT,
+  SET_EDIT_CONTACT,
+  CLEAR_CURRENT,
+  DELETE_CONTACT
+} from '../types';
 
 const contactReducer = (state, action) => {
   switch (action.type) {
@@ -14,9 +19,16 @@ const contactReducer = (state, action) => {
     case CLEAR_CURRENT:
       state = { ...state, current: null };
       return state;
+    case DELETE_CONTACT:
+      state = {
+        ...state,
+        contacts: state.contacts.filter(
+          (contact) => contact.id !== action.payload
+        )
+      };
+      return state;
     default:
       return state;
   }
 };
-
 export default contactReducer;

@@ -4,9 +4,7 @@ import { ContactContext } from '../../context/contact/contactState';
 import './ContactItem.scss';
 
 const ContactItem = ({ contact }) => {
-  const { setEditContact } = useContext(ContactContext);
-
-  const editContactHandler = (contactId) => setEditContact(contactId);
+  const { setEditContact, deleteContact } = useContext(ContactContext);
 
   return (
     <div className="contact__item">
@@ -20,8 +18,8 @@ const ContactItem = ({ contact }) => {
           {contact.type.slice(1)}
         </p>
         <div className="contact__control">
-          <button>Delete</button>
-          <button onClick={(e) => editContactHandler(contact.id)}>Edit</button>
+          <button onClick={(e) => deleteContact(contact.id)}>Delete</button>
+          <button onClick={(e) => setEditContact(contact.id)}>Edit</button>
         </div>
       </div>
     </div>
