@@ -18,6 +18,9 @@ const ContactForm = () => {
     setContact(initialContact);
   };
 
+  const onChangeHandler = (e) =>
+    setContact({ ...contact, [e.target.name]: e.target.value });
+
   return (
     <form className="contact-form" onSubmit={(e) => submitHandler(e)}>
       <div className="contact-form__input-group">
@@ -26,8 +29,11 @@ const ContactForm = () => {
           <input
             className="contact-form__text-input"
             type="text"
+            onChange={(e) => onChangeHandler(e)}
+            value={contact.name}
             placeholder="Contact Name"
             id="name"
+            name="name"
           />
         </label>
       </div>
@@ -37,6 +43,9 @@ const ContactForm = () => {
           <input
             className="contact-form__text-input"
             type="text"
+            name="phone"
+            onChange={(e) => onChangeHandler(e)}
+            value={contact.phone}
             placeholder="Phone number"
             id="phone"
           />
@@ -48,12 +57,24 @@ const ContactForm = () => {
 
         <div>
           <label className="contact-form__radio-label">
-            <input type="radio" name="type" value="personal" />
+            <input
+              checked={contact.type === 'personal'}
+              type="radio"
+              name="type"
+              value="personal"
+              onChange={(e) => onChangeHandler(e)}
+            />
             Personal
           </label>
 
           <label className="contact-form__radio-label">
-            <input type="radio" name="type" value="professional" />
+            <input
+              type="radio"
+              name="type"
+              checked={contact.type === 'professional'}
+              onChange={(e) => onChangeHandler(e)}
+              value="professional"
+            />
             Professional
           </label>
         </div>
