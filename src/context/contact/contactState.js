@@ -6,8 +6,8 @@ export const ContactContext = createContext();
 
 const initialState = {
   contacts: [
-    { name: 'Maverick', phone: '123-333-444', type: 'personal' },
-    { name: 'Felix', phone: '555-555-111-111', type: 'professional' }
+    { id: '1', name: 'Maverick', phone: '123-333-444', type: 'personal' },
+    { id: '2', name: 'Felix', phone: '555-555-111-111', type: 'professional' }
   ]
 };
 

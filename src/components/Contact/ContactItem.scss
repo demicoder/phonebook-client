@@ -1,0 +1,47 @@
+@import '../../assets/variables';
+
+.contact__item {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.contact {
+  &__name {
+    line-height: 2;
+    font: {
+      size: 130%;
+      weight: 550;
+    }
+  }
+  &__info {
+    text-align: right;
+  }
+  &__type {
+    border-radius: 1rem;
+    font-size: 90%;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    &--personal {
+      background: $personal-badge;
+    }
+    &--professional {
+      background: $professional-badge;
+    }
+  }
+  &__control {
+    button {
+      margin-left: 1rem;
+    }
+  }
+}
