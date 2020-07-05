@@ -9,9 +9,16 @@ const ContactList = () => {
 
   return (
     <div className="contact__list">
-      {contacts.map((contact) => (
-        <ContactItem key={contact.id} contact={contact} />
-      ))}
+      {contacts.length ? (
+        contacts.map((contact) => (
+          <ContactItem key={contact.id} contact={contact} />
+        ))
+      ) : (
+        <div className="contact__empty">
+          <h2 className="contact__empty--head">No contacts</h2>
+          <p>Your phonebook is currently empty!</p>
+        </div>
+      )}
     </div>
   );
 };

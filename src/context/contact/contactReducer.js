@@ -2,7 +2,8 @@ import {
   ADD_CONTACT,
   SET_EDIT_CONTACT,
   CLEAR_CURRENT,
-  DELETE_CONTACT
+  DELETE_CONTACT,
+  EDIT_CONTACT
 } from '../types';
 
 const contactReducer = (state, action) => {
@@ -24,6 +25,14 @@ const contactReducer = (state, action) => {
         ...state,
         contacts: state.contacts.filter(
           (contact) => contact.id !== action.payload
+        )
+      };
+      return state;
+    case EDIT_CONTACT:
+      state = {
+        ...state,
+        contacts: state.contacts.map((contact) =>
+          contact.id !== action.payload.id ? contact : action.payload
         )
       };
       return state;

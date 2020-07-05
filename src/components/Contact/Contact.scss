@@ -5,6 +5,11 @@
     display: flex;
     justify-content: space-between;
   }
+  &__empty {
+    &--head {
+      font-size: 2rem;
+    }
+  }
 }
 
 .contact-form {

@@ -4,7 +4,8 @@ import {
   ADD_CONTACT,
   SET_EDIT_CONTACT,
   CLEAR_CURRENT,
-  DELETE_CONTACT
+  DELETE_CONTACT,
+  EDIT_CONTACT
 } from '../types';
 
 export const ContactContext = createContext();
@@ -33,15 +34,16 @@ const ContactContextProvider = ({ children }) => {
     dispatch({ type: ADD_CONTACT, payload: newContact });
   };
 
-  const setEditContact = (contactId) => {
+  const setEditContact = (contactId) =>
     dispatch({ type: SET_EDIT_CONTACT, payload: contactId });
-  };
+
+  const editContact = (contact) =>
+    dispatch({ type: EDIT_CONTACT, payload: contact });
 
   const clearCurrent = () => dispatch({ type: CLEAR_CURRENT });
 
-  const deleteContact = (contactId) => {
+  const deleteContact = (contactId) =>
     dispatch({ type: DELETE_CONTACT, payload: contactId });
-  };
 
   return (
     <ContactContext.Provider
@@ -49,6 +51,7 @@ const ContactContextProvider = ({ children }) => {
         contacts: state.contacts,
         addContact,
         setEditContact,
+        editContact,
         current: state.current,
         clearCurrent,
         deleteContact

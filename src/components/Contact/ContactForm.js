@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ContactContext } from '../../context/contact/contactState';
 
 const ContactForm = () => {
-  const { addContact, current, clearCurrent } = useContext(ContactContext);
+  const { addContact, current, editContact, clearCurrent } = useContext(
+    ContactContext
+  );
 
   const initialContact = {
     name: '',
@@ -24,6 +26,9 @@ const ContactForm = () => {
 
   const editHandler = (e) => {
     e.preventDefault();
+    editContact(contact);
+    setContact(initialContact);
+    clearCurrent();
   };
 
   const onChangeHandler = (e) =>
