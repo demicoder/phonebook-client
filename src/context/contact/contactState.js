@@ -9,7 +9,7 @@ const initialState = {
     { id: '1', name: 'Maverick', phone: '123-333-444', type: 'personal' },
     { id: '2', name: 'Felix', phone: '555-555-111-111', type: 'professional' }
   ],
-  currentEdit: null
+  current: null
 };
 
 const ContactContextProvider = ({ children }) => {
@@ -34,7 +34,12 @@ const ContactContextProvider = ({ children }) => {
 
   return (
     <ContactContext.Provider
-      value={{ contacts: state.contacts, addContact, setEditContact }}
+      value={{
+        contacts: state.contacts,
+        addContact,
+        setEditContact,
+        current: state.current
+      }}
     >
       {children}
     </ContactContext.Provider>

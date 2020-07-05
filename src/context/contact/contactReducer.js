@@ -8,11 +8,8 @@ const contactReducer = (state, action) => {
     case SET_EDIT_CONTACT:
       state = {
         ...state,
-        currentEdit: state.contacts.find(
-          (contact) => contact.id === action.payload
-        )
+        current: state.contacts.find((contact) => contact.id === action.payload)
       };
-      console.log(state);
 
       return state;
     default:

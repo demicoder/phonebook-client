@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ContactContext } from '../../context/contact/contactState';
 
 const ContactForm = () => {
-  const { addContact } = useContext(ContactContext);
+  const { addContact, current } = useContext(ContactContext);
 
   const initialContact = {
     name: '',
@@ -12,17 +12,28 @@ const ContactForm = () => {
 
   const [contact, setContact] = useState(initialContact);
 
+  useEffect(() => {
+    if (current) setContact(current);
+  }, [current]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     addContact(contact);
     setContact(initialContact);
   };
 
+  const editHandler = (e) => {
+    e.preventDefault();
+  };
+
   const onChangeHandler = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
 
   return (
-    <form className="contact-form" onSubmit={(e) => submitHandler(e)}>
+    <form
+      className="contact-form"
+      onSubmit={(e) => (current ? editHandler(e) : submitHandler(e))}
+    >
       <div className="contact-form__input-group">
         <label className="contact-form__label">
           <span className="contact-form__label-text">Name</span>
@@ -82,7 +93,7 @@ const ContactForm = () => {
 
       <div className="contact-form__input-group">
         <button type="submit" className="contact-form__submit-btn">
-          Save Contact
+          {current ? 'Edit Contact' : 'Save Contact'}
         </button>
       </div>
     </form>
