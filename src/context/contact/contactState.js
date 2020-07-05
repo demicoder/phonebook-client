@@ -15,7 +15,16 @@ const ContactContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   const addContact = (contact) => {
-    dispatch({ type: ADD_CONTACT, payload: contact });
+    if (contact.name.trim().length <= 0 || contact.phone.trim().length <= 0) {
+      return false;
+    }
+
+    const newContact = {
+      ...contact,
+      id: new Date().valueOf().toString()
+    };
+
+    dispatch({ type: ADD_CONTACT, payload: newContact });
   };
 
   return (
