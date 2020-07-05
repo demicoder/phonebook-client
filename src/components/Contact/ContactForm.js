@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { ContactContext } from '../../context/contact/contactState';
 
 const ContactForm = () => {
+  const { addContact } = useContext(ContactContext);
+
+  const initialContact = {
+    name: '',
+    phone: '',
+    type: 'personal'
+  };
+
+  const [contact, setContact] = useState(initialContact);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    addContact(contact);
+    setContact(initialContact);
+  };
+
   return (
-    <form className="contact-form">
+    <form className="contact-form" onSubmit={(e) => submitHandler(e)}>
       <div className="contact-form__input-group">
         <label className="contact-form__label">
           <span className="contact-form__label-text">Name</span>

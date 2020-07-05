@@ -1,6 +1,15 @@
 @import '../../assets/variables';
 
+.contact {
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .contact-form {
+  width: 48%;
+
   &__input-group {
     margin-bottom: 2rem;
   }

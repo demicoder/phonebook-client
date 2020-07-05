@@ -1,16 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+
 import Header from './components/layouts/Header.';
 import Contact from './components/Contact/Contact';
+import ContactContextProvider from './context/contact/contactState';
 import './App.scss';
 
 const App = () => {
   return (
-    <Fragment>
+    <ContactContextProvider>
       <Header />
       <div className="content">
         <Contact />
       </div>
-    </Fragment>
+    </ContactContextProvider>
   );
 };
 
