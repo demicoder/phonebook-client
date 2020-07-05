@@ -1,0 +1,33 @@
+.main-header {
+  background: #333;
+  padding: 1rem 0;
+  color: #fff;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    h1 {
+      font: {
+        size: 150%;
+        weight: 500;
+      }
+    }
+  }
+  &__nav {
+    li {
+      display: inline-block;
+      margin-left: 2rem;
+    }
+    li a {
+      border-bottom: 2px solid transparent;
+      transition: 0.4s ease-out border;
+      &:hover {
+        border-bottom-color: #fff;
+      }
+    }
+  }
+}
