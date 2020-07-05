@@ -1,4 +1,4 @@
-import { ADD_CONTACT, SET_EDIT_CONTACT } from '../types';
+import { ADD_CONTACT, SET_EDIT_CONTACT, CLEAR_CURRENT } from '../types';
 
 const contactReducer = (state, action) => {
   switch (action.type) {
@@ -10,7 +10,9 @@ const contactReducer = (state, action) => {
         ...state,
         current: state.contacts.find((contact) => contact.id === action.payload)
       };
-
+      return state;
+    case CLEAR_CURRENT:
+      state = { ...state, current: null };
       return state;
     default:
       return state;

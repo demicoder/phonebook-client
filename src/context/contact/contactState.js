@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import contactReducer from './contactReducer';
-import { ADD_CONTACT, SET_EDIT_CONTACT } from '../types';
+import { ADD_CONTACT, SET_EDIT_CONTACT, CLEAR_CURRENT } from '../types';
 
 export const ContactContext = createContext();
 
@@ -32,13 +32,16 @@ const ContactContextProvider = ({ children }) => {
     dispatch({ type: SET_EDIT_CONTACT, payload: contactId });
   };
 
+  const clearCurrent = () => dispatch({ type: CLEAR_CURRENT });
+
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
         addContact,
         setEditContact,
-        current: state.current
+        current: state.current,
+        clearCurrent
       }}
     >
       {children}

@@ -40,15 +40,25 @@
     margin-right: 2rem;
   }
 
-  &__submit-btn {
-    background: $accent;
+  &__btn {
     padding: 1rem 2.5rem;
     border-radius: 0.5rem;
     color: #fff;
     font-weight: 600;
-    &:hover {
-      background: darken($accent, 20);
-      color: #fff;
+    margin-right: 1rem;
+
+    &--action {
+      background: $accent;
+      &:hover {
+        background: darken($accent, 20);
+      }
+    }
+
+    &--cancel {
+      background: $danger;
+      &:hover {
+        background: darken($danger, 20);
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ContactContext } from '../../context/contact/contactState';
 
 const ContactForm = () => {
-  const { addContact, current } = useContext(ContactContext);
+  const { addContact, current, clearCurrent } = useContext(ContactContext);
 
   const initialContact = {
     name: '',
@@ -28,6 +28,11 @@ const ContactForm = () => {
 
   const onChangeHandler = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
+
+  const clearCurrentHandler = (e) => {
+    clearCurrent(e);
+    setContact(initialContact);
+  };
 
   return (
     <form
@@ -92,9 +97,21 @@ const ContactForm = () => {
       </div>
 
       <div className="contact-form__input-group">
-        <button type="submit" className="contact-form__submit-btn">
+        <button
+          type="submit"
+          className="contact-form__btn contact-form__btn--action"
+        >
           {current ? 'Edit Contact' : 'Save Contact'}
         </button>
+        {current && (
+          <button
+            type="submit"
+            onClick={(e) => clearCurrentHandler(e)}
+            className="contact-form__btn contact-form__btn--cancel"
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </form>
   );
