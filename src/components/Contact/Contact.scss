@@ -10,24 +10,35 @@
       font-size: 2rem;
     }
   }
+  &__filter {
+    margin-bottom: 2rem;
+    &--input-text {
+      width: 100%;
+      border-radius: 2rem;
+      border: 2px solid #ddd;
+      padding: 10px 15px;
+    }
+  }
 }
 
 .contact-form {
   width: 48%;
+  background: #efefef;
+  border-radius: 2rem;
+  padding: 2rem;
 
   &__input-group {
     margin-bottom: 2rem;
   }
 
   &__text-input {
-    background: #ececec;
     border-bottom: 2px solid transparent;
     padding: 10px;
+    background: #fff;
     display: block;
     border-radius: 5px;
     width: 100%;
     &:focus {
-      background: #ececec;
       border-bottom-color: $accent;
     }
   }

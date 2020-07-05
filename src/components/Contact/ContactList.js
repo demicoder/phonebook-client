@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 
 import { ContactContext } from '../../context/contact/contactState';
 import './ContactList.scss';
+import ContactFilter from './ContactFilter';
 import ContactItem from './ContactItem';
 
 const ContactList = () => {
@@ -10,9 +11,12 @@ const ContactList = () => {
   return (
     <div className="contact__list">
       {contacts.length ? (
-        contacts.map((contact) => (
-          <ContactItem key={contact.id} contact={contact} />
-        ))
+        <Fragment>
+          <ContactFilter />
+          {contacts.map((contact) => (
+            <ContactItem key={contact.id} contact={contact} />
+          ))}
+        </Fragment>
       ) : (
         <div className="contact__empty">
           <h2 className="contact__empty--head">No contacts</h2>
