@@ -9,6 +9,7 @@
   background: none;
   box-sizing: border-box;
   font-size: 100%;
+  font-family: inherit;
 }
 
 li {
@@ -23,6 +24,7 @@ a {
 input[type='submit'],
 button {
   transition: 0.4s ease-out;
+  cursor: pointer;
 }
 
 h1,
@@ -44,4 +46,8 @@ body {
 .row {
   max-width: 1200px;
   margin: auto;
+}
+
+.content {
+  margin: 3rem 0;
 }

@@ -1,0 +1,45 @@
+@import '../../assets/variables';
+
+.contact-form {
+  &__input-group {
+    margin-bottom: 2rem;
+  }
+
+  &__text-input {
+    background: #ececec;
+    border-bottom: 2px solid transparent;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    &:focus {
+      background: #ececec;
+      border-bottom-color: $accent;
+    }
+  }
+
+  &__label-text {
+    line-height: 2;
+    margin-bottom: 0.5rem;
+    font-weight: 550;
+  }
+
+  &__radio-label {
+    input[type='radio'] {
+      margin-right: 0.5rem;
+    }
+    margin-right: 2rem;
+  }
+
+  &__submit-btn {
+    background: $accent;
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+    &:hover {
+      background: darken($accent, 20);
+      color: #fff;
+    }
+  }
+}
