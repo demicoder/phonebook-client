@@ -6,11 +6,9 @@ import ContactList from './ContactList';
 const Contact = () => {
   return (
     <div className="contact">
-      <div className="row">
-        <div className="contact__wrap">
-          <ContactForm />
-          <ContactList />
-        </div>
+      <div className="contact__wrap">
+        <ContactForm />
+        <ContactList />
       </div>
     </div>
   );
