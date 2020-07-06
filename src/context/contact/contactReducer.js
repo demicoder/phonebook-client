@@ -3,7 +3,8 @@ import {
   SET_EDIT_CONTACT,
   CLEAR_CURRENT,
   DELETE_CONTACT,
-  EDIT_CONTACT
+  EDIT_CONTACT,
+  FILTER_CONTACT
 } from '../types';
 
 const contactReducer = (state, action) => {
@@ -33,6 +34,16 @@ const contactReducer = (state, action) => {
         ...state,
         contacts: state.contacts.map((contact) =>
           contact.id !== action.payload.id ? contact : action.payload
+        )
+      };
+      return state;
+    case FILTER_CONTACT:
+      state = {
+        ...state,
+        filtered: state.contacts.filter(
+          (contact) =>
+            contact.name.toLowerCase().includes(action.payload.toLowerCase()) ||
+            contact.phone.includes(action.payload)
         )
       };
       return state;
