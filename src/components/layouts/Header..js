@@ -21,6 +21,9 @@ const Header = () => (
           <li>
             <Link to="/register">Create Account</Link>
           </li>
+          <li>
+            <Link to="/register">Create Account</Link>
+          </li>
         </ul>
       </nav>
     </div>

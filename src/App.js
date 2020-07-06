@@ -5,9 +5,10 @@ import Header from './components/layouts/Header.';
 import Contact from './components/Contact/Contact';
 import ContactContextProvider from './context/contact/contactState';
 import AuthContextProvider from './context/auth/authState';
-import './App.scss';
 import AboutPage from './components/pages/About';
 import RegisterPage from './components/pages/auth/Register';
+import LoginPage from './components/pages/auth/Login';
+import './App.scss';
 
 const App = () => {
   return (
@@ -27,6 +28,10 @@ const App = () => {
 
                 <Route path="/register" exact>
                   <RegisterPage />
+                </Route>
+
+                <Route path="/login" exact>
+                  <LoginPage />
                 </Route>
 
                 {/* Homepage */}
