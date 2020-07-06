@@ -4,7 +4,8 @@ import {
   CLEAR_CURRENT,
   DELETE_CONTACT,
   EDIT_CONTACT,
-  FILTER_CONTACT
+  FILTER_CONTACT,
+  CLEAR_FILTER
 } from '../types';
 
 const contactReducer = (state, action) => {
@@ -45,6 +46,12 @@ const contactReducer = (state, action) => {
             contact.name.toLowerCase().includes(action.payload.toLowerCase()) ||
             contact.phone.includes(action.payload)
         )
+      };
+      return state;
+    case CLEAR_FILTER:
+      state = {
+        ...state,
+        filtered: null
       };
       return state;
     default:

@@ -6,14 +6,16 @@ import ContactFilter from './ContactFilter';
 import ContactItem from './ContactItem';
 
 const ContactList = () => {
-  const { contacts } = useContext(ContactContext);
+  const { contacts, filteredContacts } = useContext(ContactContext);
+
+  const displayContacts = filteredContacts ? filteredContacts : contacts;
 
   return (
     <div className="contact__list">
       {contacts.length ? (
         <Fragment>
           <ContactFilter />
-          {contacts.map((contact) => (
+          {displayContacts.map((contact) => (
             <ContactItem key={contact.id} contact={contact} />
           ))}
         </Fragment>

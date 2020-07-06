@@ -4,10 +4,17 @@ import { ContactContext } from '../../context/contact/contactState';
 const ContactFilter = () => {
   const searchRef = useRef('');
 
-  const { filterContact } = useContext(ContactContext);
+  const { filterContact, filteredContacts, clearFilter } = useContext(
+    ContactContext
+  );
 
   const onKeyUpHandler = () => {
     filterContact(searchRef.current.value);
+  };
+
+  const clearFilterHandler = () => {
+    searchRef.current.value = '';
+    clearFilter();
   };
 
   return (
@@ -19,6 +26,9 @@ const ContactFilter = () => {
         className="contact__filter--input-text"
         placeholder="Search contact"
       />
+      {filteredContacts && (
+        <button onClick={(e) => clearFilterHandler(e)}>Clear Filter</button>
+      )}
     </div>
   );
 };

@@ -4,3 +4,4 @@ export const EDIT_CONTACT = 'EDIT_CONTACT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';
 export const FILTER_CONTACT = 'FILTER_CONTACT';
+export const CLEAR_FILTER = 'CLEAR_FILTER';

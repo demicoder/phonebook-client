@@ -6,7 +6,8 @@ import {
   CLEAR_CURRENT,
   DELETE_CONTACT,
   EDIT_CONTACT,
-  FILTER_CONTACT
+  FILTER_CONTACT,
+  CLEAR_FILTER
 } from '../types';
 
 export const ContactContext = createContext();
@@ -47,21 +48,24 @@ const ContactContextProvider = ({ children }) => {
   const deleteContact = (contactId) =>
     dispatch({ type: DELETE_CONTACT, payload: contactId });
 
-  const filterContact = (text) => {
+  const filterContact = (text) =>
     dispatch({ type: FILTER_CONTACT, payload: text });
-  };
+
+  const clearFilter = () => dispatch({ type: CLEAR_FILTER });
 
   return (
     <ContactContext.Provider
       value={{
-        contacts: state.filtered ? state.filtered : state.contacts,
+        contacts: state.contacts,
         addContact,
+        filteredContacts: state.filtered,
         setEditContact,
         editContact,
         current: state.current,
         clearCurrent,
         deleteContact,
-        filterContact
+        filterContact,
+        clearFilter
       }}
     >
       {children}
