@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
+import { AlertContext } from '../../../context/alert/alertContext';
 import './AuthForm.scss';
 
 const RegisterPage = () => {
@@ -10,12 +11,17 @@ const RegisterPage = () => {
     passwordConfirm: ''
   });
 
+  const { addAlert } = useContext(AlertContext);
+
   const onChangeHandler = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(user);
+
+    if (user.name.trim().length < 1 || user.email.length < 1) {
+      addAlert({ type: 'error', msg: 'All fields are required' });
+    }
   };
 
   return (

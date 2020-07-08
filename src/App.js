@@ -9,39 +9,45 @@ import AboutPage from './components/pages/About';
 import RegisterPage from './components/pages/auth/Register';
 import LoginPage from './components/pages/auth/Login';
 import './App.scss';
+import AlertContextProvider from './context/alert/alertContext';
+import Alerts from './components/layouts/Alert';
 
 const App = () => {
   return (
     <AuthContextProvider>
       <ContactContextProvider>
-        <BrowserRouter>
-          <Header />
+        <AlertContextProvider>
+          <BrowserRouter>
+            <Header />
 
-          <div className="row">
-            <div className="content">
-              <Switch>
-                {/* About page */}
+            <div className="row">
+              <div className="content">
+                <Alerts />
 
-                <Route path="/about" exact>
-                  <AboutPage />
-                </Route>
+                <Switch>
+                  {/* About page */}
 
-                <Route path="/register" exact>
-                  <RegisterPage />
-                </Route>
+                  <Route path="/about" exact>
+                    <AboutPage />
+                  </Route>
 
-                <Route path="/login" exact>
-                  <LoginPage />
-                </Route>
+                  <Route path="/register" exact>
+                    <RegisterPage />
+                  </Route>
 
-                {/* Homepage */}
-                <Route path="/" exact>
-                  <Contact />
-                </Route>
-              </Switch>
+                  <Route path="/login" exact>
+                    <LoginPage />
+                  </Route>
+
+                  {/* Homepage */}
+                  <Route path="/" exact>
+                    <Contact />
+                  </Route>
+                </Switch>
+              </div>
             </div>
-          </div>
-        </BrowserRouter>
+          </BrowserRouter>
+        </AlertContextProvider>
       </ContactContextProvider>
     </AuthContextProvider>
   );

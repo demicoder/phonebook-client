@@ -1,0 +1,18 @@
+.alert {
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  color: #fff;
+  border-radius: 0.5rem;
+  max-width: 450px;
+  padding: 1rem;
+  font-weight: 550;
+  &__error {
+    background: #daa9a1;
+  }
+  &__warn {
+    background: #eeca93;
+  }
+  &__success {
+    background: #97e097;
+  }
+}
