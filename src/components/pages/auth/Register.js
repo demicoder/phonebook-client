@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import { AlertContext } from '../../../context/alert/alertContext';
 import './AuthForm.scss';
+import { AuthContext } from '../../../context/auth/authState';
 
 const RegisterPage = () => {
   const [user, setUser] = useState({
@@ -11,6 +12,8 @@ const RegisterPage = () => {
     passwordConfirm: ''
   });
 
+  const { registerUser } = useContext(AuthContext);
+
   const { addAlert } = useContext(AlertContext);
 
   const onChangeHandler = (e) =>
@@ -19,8 +22,10 @@ const RegisterPage = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (user.name.trim().length < 1 || user.email.length < 1) {
+    if (user.name.trim() === '' || user.email.trim() === '') {
       addAlert({ type: 'error', msg: 'All fields are required' });
+    } else {
+      registerUser(user);
     }
   };
 

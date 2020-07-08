@@ -9,6 +9,8 @@ export const CLEAR_FILTER = 'CLEAR_FILTER';
 
 // Auth Types
 export const LOGIN = 'LOGIN';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
 
 // Alert Types
 export const ADD_ALERT = 'ADD_ALERT';
