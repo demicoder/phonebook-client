@@ -8,7 +8,8 @@ const Contact = () => {
   const { loadUser } = useContext(AuthContext);
 
   useEffect(() => {
-    loadUser();
+    (async () => loadUser())();
+    // eslint-disable-next-line
   }, []);
 
   return (

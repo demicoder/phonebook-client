@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Header from './components/layouts/Header.';
+import Header from './components/layouts/Header';
 import Contact from './components/Contact/Contact';
 import ContactContextProvider from './context/contact/contactState';
 import AuthContextProvider from './context/auth/authState';

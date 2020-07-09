@@ -4,7 +4,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_FAIL,
-  LOGIN
+  LOGIN,
+  LOGOUT
 } from '../types';
 
 const authReducer = (state, action) => {
@@ -16,12 +17,17 @@ const authReducer = (state, action) => {
       state = {
         ...state,
         token: action.payload.jwt,
-        user: action.payload.user,
+        user: {
+          id: action.payload.user.id,
+          email: action.payload.user.email,
+          name: action.payload.user.name
+        },
         loading: false,
         isAuth: true
       };
 
       return state;
+    case LOGOUT:
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem('jwt');
@@ -30,12 +36,19 @@ const authReducer = (state, action) => {
         token: null,
         user: null,
         loading: false,
-        isAuth: false,
-        error: "Couldn't create user, try again"
+        isAuth: false
       };
       return state;
     case USER_LOADED:
-      state = { ...state, user: action.payload, isAuth: true };
+      state = {
+        ...state,
+        user: {
+          id: action.payload.user.id,
+          email: action.payload.user.email,
+          name: action.payload.user.name
+        },
+        isAuth: true
+      };
       return state;
     case AUTH_ERROR:
       state = { ...state };

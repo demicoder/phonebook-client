@@ -5,7 +5,8 @@ import {
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN
+  LOGIN,
+  LOGOUT
 } from '../types';
 import setAuthToken from '../../utils/setAuthToken';
 
@@ -57,7 +58,6 @@ const AuthContextProvider = ({ children }) => {
   };
 
   // Login user
-
   const loginUser = async (formData) => {
     try {
       const res = await axios.post('/api/v1/user/login', formData, axiosConfig);
@@ -73,6 +73,16 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const logoutUser = async () => {
+    try {
+      const res = await axios.get('/api/v1/user/logout');
+      console.log(res);
+      dispatch({ type: LOGOUT, payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -81,6 +91,7 @@ const AuthContextProvider = ({ children }) => {
         registerUser,
         loginUser,
         loadUser,
+        logoutUser,
         user: state.user
       }}
     >
