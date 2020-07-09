@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+
+import { withRouter } from 'react-router-dom';
 
 import { AlertContext } from '../../../context/alert/alertContext';
 import './AuthForm.scss';
 import { AuthContext } from '../../../context/auth/authState';
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -12,7 +14,11 @@ const RegisterPage = () => {
     passwordConfirm: ''
   });
 
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, isAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isAuth) props.history.push('/');
+  }, [isAuth, props.history]);
 
   const { addAlert } = useContext(AlertContext);
 
@@ -32,7 +38,6 @@ const RegisterPage = () => {
   return (
     <div className="auth-form__wrap">
       <h2 className="auth-form__title">Create an account</h2>
-
       <form onSubmit={(e) => submitHandler(e)} className="auth-form">
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -96,4 +101,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

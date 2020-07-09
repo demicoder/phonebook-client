@@ -11,6 +11,9 @@ import LoginPage from './components/pages/auth/Login';
 import './App.scss';
 import AlertContextProvider from './context/alert/alertContext';
 import Alerts from './components/layouts/Alert';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.getItem('jwt')) setAuthToken(localStorage.getItem('jwt'));
 
 const App = () => {
   return (
