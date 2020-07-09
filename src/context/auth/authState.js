@@ -4,7 +4,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN
 } from '../types';
 import setAuthToken from '../../utils/setAuthToken';
 
@@ -34,14 +35,14 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   // Register user
   const registerUser = async (formData) => {
-    const axiosConfig = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-
     try {
       const res = await axios.post('/api/v1/user', formData, axiosConfig);
 
@@ -55,12 +56,30 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  // Login user
+
+  const loginUser = async (formData) => {
+    try {
+      const res = await axios.post('/api/v1/user/login', formData, axiosConfig);
+
+      dispatch({
+        type: LOGIN,
+        payload: { user: res.data.user, jwt: res.data.token }
+      });
+
+      loadUser();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         token: state.token,
         isAuth: state.isAuth,
         registerUser,
+        loginUser,
         loadUser,
         user: state.user
       }}

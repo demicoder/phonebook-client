@@ -1,18 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import './AuthForm.scss';
 import { AlertContext } from '../../../context/alert/alertContext';
+import { AuthContext } from '../../../context/auth/authState';
+import './AuthForm.scss';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
+  const { loginUser, isAuth } = useContext(AuthContext);
+
   const { addAlert } = useContext(AlertContext);
 
   const onChangeHandler = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
+
+  useEffect(() => {
+    if (isAuth) props.history.push('/');
+  }, [isAuth, props.history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -20,6 +28,8 @@ const LoginPage = () => {
     if (user.email.trim() === '' || user.password.trim() === '') {
       return addAlert({ type: 'error', msg: 'All fields are required' });
     }
+
+    loginUser(user);
   };
 
   return (
@@ -63,4 +73,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withRouter(LoginPage);
