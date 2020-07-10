@@ -1,4 +1,6 @@
 import React, { createContext, useReducer } from 'react';
+import axios from 'axios';
+
 import contactReducer from './contactReducer';
 import {
   ADD_CONTACT,
@@ -13,10 +15,7 @@ import {
 export const ContactContext = createContext();
 
 const initialState = {
-  contacts: [
-    { id: '1', name: 'Maverick', phone: '123-333-444', type: 'personal' },
-    { id: '2', name: 'Felix', phone: '555-555-111-111', type: 'professional' }
-  ],
+  contacts: [],
   current: null,
   filtered: null
 };
@@ -24,17 +23,26 @@ const initialState = {
 const ContactContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
-  const addContact = (contact) => {
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const addContact = async (contact) => {
     if (contact.name.trim().length <= 0 || contact.phone.trim().length <= 0) {
       return false;
     }
 
-    const newContact = {
-      ...contact,
-      id: new Date().valueOf().toString()
-    };
+    try {
+      const res = await axios.post('/api/v1/contact', contact, axiosConfig);
 
-    dispatch({ type: ADD_CONTACT, payload: newContact });
+      console.log(res);
+
+      dispatch({ type: ADD_CONTACT, payload: res.data.contact });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const setEditContact = (contactId) =>
