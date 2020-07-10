@@ -9,7 +9,8 @@ import {
   DELETE_CONTACT,
   EDIT_CONTACT,
   FILTER_CONTACT,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  GET_CONTACTS
 } from '../types';
 
 export const ContactContext = createContext();
@@ -17,6 +18,7 @@ export const ContactContext = createContext();
 const initialState = {
   contacts: [],
   current: null,
+  loading: true,
   filtered: null
 };
 
@@ -40,6 +42,16 @@ const ContactContextProvider = ({ children }) => {
       console.log(res);
 
       dispatch({ type: ADD_CONTACT, payload: res.data.contact });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getContacts = async () => {
+    try {
+      const res = await axios.get('/api/v1/contact');
+
+      dispatch({ type: GET_CONTACTS, payload: res.data.contacts });
     } catch (err) {
       console.log(err);
     }
@@ -70,9 +82,11 @@ const ContactContextProvider = ({ children }) => {
         setEditContact,
         editContact,
         current: state.current,
+        loading: state.loading,
         clearCurrent,
         deleteContact,
         filterContact,
+        getContacts,
         clearFilter
       }}
     >

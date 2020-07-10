@@ -1,14 +1,21 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 
 import { ContactContext } from '../../context/contact/contactState';
-import './ContactList.scss';
 import ContactFilter from './ContactFilter';
 import ContactItem from './ContactItem';
+import './ContactList.scss';
 
 const ContactList = () => {
-  const { contacts, filteredContacts } = useContext(ContactContext);
+  const { contacts, getContacts, filteredContacts } = useContext(
+    ContactContext
+  );
 
   const displayContacts = filteredContacts ? filteredContacts : contacts;
+
+  useEffect(() => {
+    getContacts();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="contact__list">
