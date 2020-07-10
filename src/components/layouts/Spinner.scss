@@ -1,0 +1,20 @@
+@import '../../assets/variables';
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: #ccc 2px solid;
+  border-right-color: $accent;
+  margin: 1rem auto;
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
