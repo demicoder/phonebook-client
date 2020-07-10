@@ -37,8 +37,7 @@ const authReducer = (state, action) => {
         token: null,
         user: null,
         loading: false,
-        isAuth: false,
-        contacts: []
+        isAuth: false
       };
       return state;
     case USER_LOADED:

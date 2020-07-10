@@ -1,13 +1,18 @@
 import React, { useContext, Fragment } from 'react';
+
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/auth/authState';
+import { ContactContext } from '../../context/contact/contactState';
 import './Header.scss';
 
 const Header = () => {
   const { isAuth, user, logoutUser } = useContext(AuthContext);
 
+  const { clearContacts } = useContext(ContactContext);
+
   const logoutHandler = (e) => {
     e.preventDefault();
+    clearContacts();
     logoutUser();
   };
 
@@ -24,7 +29,11 @@ const Header = () => {
 
   const authLinks = (
     <Fragment>
-      <li>{user && `Hello ${user.name}`}</li>
+      <li>
+        {user && user.name
+          ? `Hello ${user.name}`
+          : user && user.email && `Hello ${user.email}`}
+      </li>
 
       <li>
         <a href="#?logout" onClick={(e) => logoutHandler(e)}>

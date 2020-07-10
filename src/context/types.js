@@ -7,6 +7,7 @@ export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';
 export const FILTER_CONTACT = 'FILTER_CONTACT';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const CLEAR_CONTACTS = 'CLEAR_CONTACTS';
 
 // Auth Types
 export const LOGIN = 'LOGIN';

@@ -10,7 +10,8 @@ import {
   EDIT_CONTACT,
   FILTER_CONTACT,
   CLEAR_FILTER,
-  GET_CONTACTS
+  GET_CONTACTS,
+  CLEAR_CONTACTS
 } from '../types';
 
 export const ContactContext = createContext();
@@ -54,6 +55,8 @@ const ContactContextProvider = ({ children }) => {
       console.log(err);
     }
   };
+
+  const clearContacts = () => dispatch({ type: CLEAR_CONTACTS });
 
   const setEditContact = (contactId) =>
     dispatch({ type: SET_EDIT_CONTACT, payload: contactId });
@@ -103,7 +106,8 @@ const ContactContextProvider = ({ children }) => {
         deleteContact,
         clearCurrent,
         filterContact,
-        clearFilter
+        clearFilter,
+        clearContacts
       }}
     >
       {children}

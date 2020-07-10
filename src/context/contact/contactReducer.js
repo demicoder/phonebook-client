@@ -6,7 +6,8 @@ import {
   DELETE_CONTACT,
   EDIT_CONTACT,
   FILTER_CONTACT,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  CLEAR_CONTACTS
 } from '../types';
 
 const contactReducer = (state, action) => {
@@ -40,10 +41,7 @@ const contactReducer = (state, action) => {
     case CLEAR_CURRENT:
       state = {
         ...state,
-        contacts: [],
-        current: null,
-        loading: true,
-        filtered: null
+        current: null
       };
       return state;
 
@@ -71,6 +69,9 @@ const contactReducer = (state, action) => {
         ...state,
         filtered: null
       };
+      return state;
+    case CLEAR_CONTACTS:
+      state = { ...state, contacts: null };
       return state;
     default:
       return state;
