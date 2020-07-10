@@ -52,7 +52,12 @@ const Header = () => {
           </h1>
         </div>
         <nav className="main-header__nav">
-          <ul>{isAuth ? authLinks : guestLinks}</ul>
+          <ul>
+            {isAuth ? authLinks : guestLinks}
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>
