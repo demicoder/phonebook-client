@@ -12,6 +12,7 @@ import './App.scss';
 import AlertContextProvider from './context/alert/alertContext';
 import Alerts from './components/layouts/Alert';
 import setAuthToken from './utils/setAuthToken';
+import PrivateRoutes from './components/routing/PrivateRoute';
 
 if (localStorage.getItem('jwt')) setAuthToken(localStorage.getItem('jwt'));
 
@@ -43,9 +44,7 @@ const App = () => {
                   </Route>
 
                   {/* Homepage */}
-                  <Route path="/" exact>
-                    <Contact />
-                  </Route>
+                  <PrivateRoutes path="/" exact component={Contact} />
                 </Switch>
               </div>
             </div>

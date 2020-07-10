@@ -17,7 +17,7 @@ export const AuthContext = createContext();
 const initialState = {
   token: localStorage.getItem('jwt') || null,
   user: null,
-  loading: false,
+  loading: true,
   isAuth: false
 };
 
@@ -88,6 +88,7 @@ const AuthContextProvider = ({ children }) => {
       value={{
         token: state.token,
         isAuth: state.isAuth,
+        loading: state.loading,
         registerUser,
         loginUser,
         loadUser,

@@ -28,6 +28,7 @@ const authReducer = (state, action) => {
 
       return state;
     case LOGOUT:
+    case AUTH_ERROR:
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem('jwt');
@@ -36,7 +37,8 @@ const authReducer = (state, action) => {
         token: null,
         user: null,
         loading: false,
-        isAuth: false
+        isAuth: false,
+        contacts: []
       };
       return state;
     case USER_LOADED:
@@ -47,11 +49,9 @@ const authReducer = (state, action) => {
           email: action.payload.user.email,
           name: action.payload.user.name
         },
-        isAuth: true
+        isAuth: true,
+        loading: false
       };
-      return state;
-    case AUTH_ERROR:
-      state = { ...state };
       return state;
     default:
       return state;
