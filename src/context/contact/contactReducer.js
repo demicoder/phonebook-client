@@ -27,6 +27,16 @@ const contactReducer = (state, action) => {
         current: state.contacts.find((contact) => contact.id === action.payload)
       };
       return state;
+    case EDIT_CONTACT:
+      state = {
+        ...state,
+        loading: false,
+        contacts: state.contacts.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact
+        )
+      };
+
+      return state;
     case CLEAR_CURRENT:
       state = {
         ...state,
@@ -36,21 +46,13 @@ const contactReducer = (state, action) => {
         filtered: null
       };
       return state;
+
     case DELETE_CONTACT:
       state = {
         ...state,
         loading: false,
         contacts: state.contacts.filter(
           (contact) => contact.id !== action.payload
-        )
-      };
-      return state;
-    case EDIT_CONTACT:
-      state = {
-        ...state,
-        loading: false,
-        contacts: state.contacts.map((contact) =>
-          contact.id !== action.payload.id ? contact : action.payload
         )
       };
       return state;

@@ -16,7 +16,7 @@ import {
 export const ContactContext = createContext();
 
 const initialState = {
-  contacts: [],
+  contacts: null,
   current: null,
   loading: true,
   filtered: null
@@ -39,8 +39,6 @@ const ContactContextProvider = ({ children }) => {
     try {
       const res = await axios.post('/api/v1/contact', contact, axiosConfig);
 
-      console.log(res);
-
       dispatch({ type: ADD_CONTACT, payload: res.data.contact });
     } catch (err) {
       console.log(err);
@@ -60,10 +58,19 @@ const ContactContextProvider = ({ children }) => {
   const setEditContact = (contactId) =>
     dispatch({ type: SET_EDIT_CONTACT, payload: contactId });
 
-  const editContact = (contact) =>
-    dispatch({ type: EDIT_CONTACT, payload: contact });
+  const editContact = async (contact) => {
+    try {
+      const res = await axios.patch(
+        `/api/v1/contact/${contact.id}`,
+        contact,
+        axiosConfig
+      );
 
-  const clearCurrent = () => dispatch({ type: CLEAR_CURRENT });
+      dispatch({ type: EDIT_CONTACT, payload: res.data.contact });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const deleteContact = async (contactId) => {
     try {
@@ -80,20 +87,22 @@ const ContactContextProvider = ({ children }) => {
 
   const clearFilter = () => dispatch({ type: CLEAR_FILTER });
 
+  const clearCurrent = () => dispatch({ type: CLEAR_CURRENT });
+
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
-        addContact,
         filteredContacts: state.filtered,
-        setEditContact,
-        editContact,
         current: state.current,
         loading: state.loading,
-        clearCurrent,
-        deleteContact,
-        filterContact,
+        addContact,
         getContacts,
+        setEditContact,
+        editContact,
+        deleteContact,
+        clearCurrent,
+        filterContact,
         clearFilter
       }}
     >

@@ -6,7 +6,7 @@ import ContactItem from './ContactItem';
 import './ContactList.scss';
 
 const ContactList = () => {
-  const { contacts, getContacts, filteredContacts } = useContext(
+  const { contacts, getContacts, loading, filteredContacts } = useContext(
     ContactContext
   );
 
@@ -19,7 +19,7 @@ const ContactList = () => {
 
   return (
     <div className="contact__list">
-      {contacts.length ? (
+      {contacts && !loading && contacts.length ? (
         <Fragment>
           <ContactFilter />
           {displayContacts.map((contact) => (

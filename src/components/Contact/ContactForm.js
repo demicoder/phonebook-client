@@ -24,11 +24,10 @@ const ContactForm = () => {
     setContact(initialContact);
   };
 
-  const editHandler = (e) => {
+  const editHandler = async (e) => {
     e.preventDefault();
     editContact(contact);
     setContact(initialContact);
-    clearCurrent();
   };
 
   const onChangeHandler = (e) =>
