@@ -65,8 +65,15 @@ const ContactContextProvider = ({ children }) => {
 
   const clearCurrent = () => dispatch({ type: CLEAR_CURRENT });
 
-  const deleteContact = (contactId) =>
-    dispatch({ type: DELETE_CONTACT, payload: contactId });
+  const deleteContact = async (contactId) => {
+    try {
+      await axios.delete(`/api/v1/contact/${contactId}`);
+
+      dispatch({ type: DELETE_CONTACT, payload: contactId });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const filterContact = (text) =>
     dispatch({ type: FILTER_CONTACT, payload: text });
