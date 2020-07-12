@@ -1,5 +1,6 @@
 import {
-  REGISTER_SUCCESS,
+  START_AUTH,
+  REGISTER,
   REGISTER_ERROR,
   USER_LOADED,
   AUTH_ERROR,
@@ -12,8 +13,11 @@ import {
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case START_AUTH:
+      state = { ...state, startAuth: true };
+      return state;
     case LOGIN:
-    case REGISTER_SUCCESS:
+    case REGISTER:
       localStorage.setItem('jwt', action.payload.jwt);
 
       state = {
@@ -25,9 +29,9 @@ const authReducer = (state, action) => {
           name: action.payload.user.name
         },
         loading: false,
-        isAuth: true
+        isAuth: true,
+        startAuth: false
       };
-
       return state;
     case LOGOUT:
     case LOGOUT_ERROR:
@@ -40,6 +44,7 @@ const authReducer = (state, action) => {
         token: null,
         error: action.payload,
         user: null,
+        startAuth: false,
         loading: false,
         isAuth: false
       };

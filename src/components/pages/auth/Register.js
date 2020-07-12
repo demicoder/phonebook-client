@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-
 import { withRouter } from 'react-router-dom';
 
 import { AlertContext } from '../../../context/alert/alertContext';
-import './AuthForm.scss';
 import { AuthContext } from '../../../context/auth/authState';
+import Spinner from '../../layouts/Spinner';
+import './AuthForm.scss';
 
 const RegisterPage = (props) => {
   const [user, setUser] = useState({
@@ -14,7 +14,9 @@ const RegisterPage = (props) => {
     passwordConfirm: ''
   });
 
-  const { registerUser, isAuth, error: authError } = useContext(AuthContext);
+  const { registerUser, isAuth, error: authError, startAuth } = useContext(
+    AuthContext
+  );
 
   useEffect(() => {
     if (isAuth) {
@@ -101,7 +103,13 @@ const RegisterPage = (props) => {
 
         <div className="form-group">
           <button type="submit" className="auth-form__action">
-            Create Accout
+            <div type="submit" className="auth-form__action--wrap">
+              {startAuth ? (
+                <Spinner height="25px" width="25px" strokeWidth="4px" />
+              ) : (
+                'Create an account'
+              )}
+            </div>
           </button>
         </div>
       </form>

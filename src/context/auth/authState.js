@@ -4,7 +4,7 @@ import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 import authReducer from './authReducer';
 import {
-  REGISTER_SUCCESS,
+  REGISTER,
   USER_LOADED,
   LOGIN,
   LOGOUT,
@@ -12,7 +12,8 @@ import {
   AUTH_ERROR,
   LOGIN_ERROR,
   LOGOUT_ERROR,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  START_AUTH
 } from '../types';
 
 export const AuthContext = createContext();
@@ -22,6 +23,7 @@ const initialState = {
   user: null,
   loading: true,
   error: null,
+  startAuth: false,
   isAuth: false
 };
 
@@ -48,11 +50,13 @@ const AuthContextProvider = ({ children }) => {
 
   // Register user
   const registerUser = async (formData) => {
+    dispatch({ type: START_AUTH });
+
     try {
       const res = await axios.post('/api/v1/user', formData, axiosConfig);
 
       dispatch({
-        type: REGISTER_SUCCESS,
+        type: REGISTER,
         payload: { user: res.data.user, jwt: res.data.token }
       });
       loadUser();
@@ -64,6 +68,8 @@ const AuthContextProvider = ({ children }) => {
 
   // Login user
   const loginUser = async (formData) => {
+    dispatch({ type: START_AUTH });
+
     try {
       const res = await axios.post('/api/v1/user/login', formData, axiosConfig);
 
@@ -100,6 +106,7 @@ const AuthContextProvider = ({ children }) => {
       value={{
         token: state.token,
         isAuth: state.isAuth,
+        startAuth: state.startAuth,
         loading: state.loading,
         error: state.error,
         registerUser,

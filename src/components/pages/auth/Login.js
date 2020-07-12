@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import Spinner from '../../layouts/Spinner';
 import { AlertContext } from '../../../context/alert/alertContext';
 import { AuthContext } from '../../../context/auth/authState';
 import './AuthForm.scss';
@@ -11,7 +12,9 @@ const LoginPage = (props) => {
     password: ''
   });
 
-  const { loginUser, isAuth, error: authError } = useContext(AuthContext);
+  const { loginUser, isAuth, error: authError, startAuth } = useContext(
+    AuthContext
+  );
 
   const { addAlert } = useContext(AlertContext);
 
@@ -73,7 +76,13 @@ const LoginPage = (props) => {
 
         <div className="form-group">
           <button type="submit" className="auth-form__action">
-            Login
+            <div type="submit" className="auth-form__action--wrap">
+              {startAuth ? (
+                <Spinner height="25px" width="25px" strokeWidth="4px" />
+              ) : (
+                'Login'
+              )}
+            </div>
           </button>
         </div>
       </form>

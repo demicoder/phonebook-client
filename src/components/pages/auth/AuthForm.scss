@@ -25,11 +25,26 @@
     }
   }
   &__action {
+    position: relative;
     background: $accent;
     color: #fff;
     padding: 1rem 1.5rem;
     border-radius: 0.5rem;
+    display: block;
+    overflow: hidden;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
     border: 1px solid $accent;
+    height: 60px;
+    &--wrap {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+    }
+
     &:hover {
       background: #fff;
       color: $accent;
