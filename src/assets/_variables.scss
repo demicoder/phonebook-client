@@ -1,9 +1,15 @@
+// 1. Colors
 $accent: #1065ac;
 $professional-badge: #1a59cf;
 $personal-badge: #1dac99;
 $danger: #e49c8f;
 $warn: #eeca93;
 $success: #97e097;
+
+// 2. Layouts
+$laptop-min-width: 1000px;
+$tab-width: 768px;
+$mobile-max-width: 500px;
 
 @keyframes fadeInSlideUp {
   from {

@@ -1,3 +1,5 @@
+@import './assets/variables';
+
 // Reset start
 *,
 *:after,
@@ -54,4 +56,11 @@ html {
 
 .content {
   margin: 3rem 0;
+}
+
+@media (max-width: $tab-width) {
+  .row {
+    padding-left: 2rem;
+    margin-right: 2rem;
+  }
 }

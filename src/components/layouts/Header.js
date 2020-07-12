@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <header className="main-header">
-      <div className="row">
+      <div className="row main-header__row">
         <div className="main-header__logo">
           <h1>
             <Link to="/">Phonebook</Link>

@@ -3,3 +3,9 @@
 .contact__list {
   width: 48%;
 }
+
+@media (max-width: $tab-width) {
+  .contact__list {
+    width: 100%;
+  }
+}

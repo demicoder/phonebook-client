@@ -24,7 +24,7 @@ const App = () => {
           <BrowserRouter>
             <Header />
 
-            <div className="row">
+            <div className="row row__main">
               <div className="content">
                 <Alerts />
 

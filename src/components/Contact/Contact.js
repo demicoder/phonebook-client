@@ -4,7 +4,6 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import ScreenFiller from '../layouts/ScreenFiller';
 import { AuthContext } from '../../context/auth/authState';
-
 import './scss/Contact.scss';
 
 const Contact = () => {

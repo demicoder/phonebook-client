@@ -5,7 +5,7 @@
   padding: 1rem 0;
   color: #fff;
 
-  .row {
+  &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,6 +30,34 @@
       &:hover {
         border-bottom-color: #fff;
       }
+    }
+  }
+}
+
+@media (max-width: $laptop-min-width) {
+  .main-header {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: $tab-width) {
+  .main-header {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: $mobile-max-width) {
+  .main-header {
+    padding-right: 0;
+    padding-left: 0;
+    &__row {
+      flex-direction: column;
+    }
+
+    &__logo {
+      margin-bottom: 0.5rem;
     }
   }
 }
