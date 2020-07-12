@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Spinner from './Spinner';
-import './ScreenFiller.scss';
+import './scss/ScreenFiller.scss';
 
 const ScreenFiller = () => (
   <div className="screen-filler">

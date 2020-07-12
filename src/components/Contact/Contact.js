@@ -5,7 +5,7 @@ import ContactList from './ContactList';
 import ScreenFiller from '../layouts/ScreenFiller';
 import { AuthContext } from '../../context/auth/authState';
 
-import './Contact.scss';
+import './scss/Contact.scss';
 
 const Contact = () => {
   const { loadUser, loading } = useContext(AuthContext);

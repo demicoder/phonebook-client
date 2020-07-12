@@ -3,7 +3,7 @@ import React, { useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/auth/authState';
 import { ContactContext } from '../../context/contact/contactState';
-import './Header.scss';
+import './scss/Header.scss';
 
 const Header = () => {
   const { isAuth, user, logoutUser } = useContext(AuthContext);

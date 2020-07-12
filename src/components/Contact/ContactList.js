@@ -3,8 +3,8 @@ import React, { useContext, Fragment, useEffect } from 'react';
 import { ContactContext } from '../../context/contact/contactState';
 import ContactFilter from './ContactFilter';
 import ContactItem from './ContactItem';
-import './ContactList.scss';
 import Spinner from '../layouts/Spinner';
+import './scss/ContactList.scss';
 
 const ContactList = () => {
   const { contacts, getContacts, loading, filteredContacts } = useContext(

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { ContactContext } from '../../context/contact/contactState';
-import './ContactItem.scss';
+import './scss/ContactItem.scss';
 
 const ContactItem = ({ contact }) => {
   const { setEditContact, deleteContact } = useContext(ContactContext);
