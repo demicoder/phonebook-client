@@ -14,10 +14,18 @@ const RegisterPage = (props) => {
     passwordConfirm: ''
   });
 
-  const { registerUser, isAuth } = useContext(AuthContext);
+  const { registerUser, isAuth, error: authError } = useContext(AuthContext);
 
   useEffect(() => {
-    if (isAuth) props.history.push('/');
+    if (isAuth) {
+      props.history.push('/');
+    }
+
+    if (authError && authError.message) {
+      addAlert({ type: 'error', msg: authError?.message });
+    }
+
+    // eslint-disable-next-line
   }, [isAuth, props.history]);
 
   const { addAlert } = useContext(AlertContext);

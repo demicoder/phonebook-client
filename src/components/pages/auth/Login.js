@@ -11,7 +11,7 @@ const LoginPage = (props) => {
     password: ''
   });
 
-  const { loginUser, isAuth } = useContext(AuthContext);
+  const { loginUser, isAuth, error: authError } = useContext(AuthContext);
 
   const { addAlert } = useContext(AlertContext);
 
@@ -19,8 +19,16 @@ const LoginPage = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value });
 
   useEffect(() => {
-    if (isAuth) props.history.push('/');
-  }, [isAuth, props.history]);
+    if (isAuth) {
+      props.history.push('/');
+    }
+
+    if (authError && authError.message) {
+      addAlert({ type: 'error', msg: authError?.message });
+    }
+
+    // eslint-disable-next-line
+  }, [isAuth, props.history, authError]);
 
   const submitHandler = (e) => {
     e.preventDefault();

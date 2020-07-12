@@ -21,14 +21,6 @@
   }
 }
 
-@media (max-width: $laptop-min-width) {
-  .contact {
-    &__wrap {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-}
 @media (max-width: $tab-width) {
   .contact {
     &__wrap {

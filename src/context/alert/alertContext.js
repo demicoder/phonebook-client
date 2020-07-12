@@ -4,14 +4,12 @@ import { ADD_ALERT, REMOVE_ALERT } from '../types';
 
 export const AlertContext = createContext();
 
-const initialState = [];
-
 const AlertContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(alertReducer, initialState);
+  const [state, dispatch] = useReducer(alertReducer, []);
 
   //   Add alert
   const addAlert = (newAlert, timeout = 5000) => {
-    const id = `${Math.random()}-${new Date().valueOf()}`;
+    const id = `${new Date().valueOf()}`;
 
     newAlert.id = id;
 

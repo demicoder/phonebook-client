@@ -1,16 +1,19 @@
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
+
+import setAuthToken from '../../utils/setAuthToken';
+import authReducer from './authReducer';
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR,
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  REGISTER_ERROR,
+  AUTH_ERROR,
+  LOGIN_ERROR,
+  LOGOUT_ERROR,
+  CLEAR_ERRORS
 } from '../types';
-import setAuthToken from '../../utils/setAuthToken';
-
-import authReducer from './authReducer';
 
 export const AuthContext = createContext();
 
@@ -18,6 +21,7 @@ const initialState = {
   token: localStorage.getItem('jwt') || null,
   user: null,
   loading: true,
+  error: null,
   isAuth: false
 };
 
@@ -53,7 +57,8 @@ const AuthContextProvider = ({ children }) => {
       });
       loadUser();
     } catch (err) {
-      dispatch({ type: REGISTER_FAIL, payload: err.response.data });
+      dispatch({ type: REGISTER_ERROR, payload: err.response.data });
+      clearErrors();
     }
   };
 
@@ -69,18 +74,25 @@ const AuthContextProvider = ({ children }) => {
 
       loadUser();
     } catch (err) {
-      console.log(err);
+      dispatch({ type: LOGIN_ERROR, payload: err.response.data });
+      clearErrors();
     }
   };
 
   const logoutUser = async () => {
     try {
       const res = await axios.get('/api/v1/user/logout');
-      console.log(res);
       dispatch({ type: LOGOUT, payload: res.data });
     } catch (err) {
-      console.log(err);
+      dispatch({ type: LOGOUT_ERROR, payload: err.response.data });
+      clearErrors();
     }
+  };
+
+  const clearErrors = (timeout = 5000) => {
+    setTimeout(() => {
+      dispatch({ type: CLEAR_ERRORS });
+    }, timeout);
   };
 
   return (
@@ -89,6 +101,7 @@ const AuthContextProvider = ({ children }) => {
         token: state.token,
         isAuth: state.isAuth,
         loading: state.loading,
+        error: state.error,
         registerUser,
         loginUser,
         loadUser,

@@ -1,11 +1,13 @@
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
+  REGISTER_ERROR,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN_FAIL,
+  LOGIN_ERROR,
+  CLEAR_ERRORS,
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  LOGOUT_ERROR
 } from '../types';
 
 const authReducer = (state, action) => {
@@ -28,18 +30,24 @@ const authReducer = (state, action) => {
 
       return state;
     case LOGOUT:
+    case LOGOUT_ERROR:
     case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case REGISTER_FAIL:
-      localStorage.removeItem('jwt');
+    case LOGIN_ERROR:
+    case REGISTER_ERROR:
+      if (!LOGOUT_ERROR) localStorage.removeItem('jwt');
       state = {
         ...state,
         token: null,
+        error: action.payload,
         user: null,
         loading: false,
         isAuth: false
       };
       return state;
+    case CLEAR_ERRORS:
+      state = { ...state, error: null };
+      return state;
+
     case USER_LOADED:
       state = {
         ...state,

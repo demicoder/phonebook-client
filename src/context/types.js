@@ -11,10 +11,11 @@ export const CLEAR_CONTACTS = 'CLEAR_CONTACTS';
 
 // Auth Types
 export const LOGIN = 'LOGIN';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const LOGOUT = 'LOGOUT';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 export const USER_LOADED = 'LOAD_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
