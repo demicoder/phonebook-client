@@ -1,0 +1,12 @@
+.screen-filler {
+  background: #fff;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}

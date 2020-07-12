@@ -1,16 +1,21 @@
 import React, { useEffect, useContext } from 'react';
+
 import ContactForm from './ContactForm';
-import './Contact.scss';
 import ContactList from './ContactList';
+import ScreenFiller from '../layouts/ScreenFiller';
 import { AuthContext } from '../../context/auth/authState';
 
+import './Contact.scss';
+
 const Contact = () => {
-  const { loadUser } = useContext(AuthContext);
+  const { loadUser, loading } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => loadUser())();
     // eslint-disable-next-line
   }, []);
+
+  if (loading) return <ScreenFiller />;
 
   return (
     <div className="contact">
