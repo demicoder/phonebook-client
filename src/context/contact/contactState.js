@@ -23,6 +23,14 @@ const initialState = {
   filtered: null
 };
 
+let HOST_URL = '';
+if (process.env.NODE_ENV === 'production') {
+  // HOST_URL = 'https://phonebookapp-api.herokuapp.com';
+  HOST_URL = process.env.HOST_URL;
+} else if (process.env.NODE_ENV === 'development') {
+  HOST_URL = 'http://localhost:4000';
+}
+
 const ContactContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
@@ -38,7 +46,11 @@ const ContactContextProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.post('/api/v1/contact', contact, axiosConfig);
+      const res = await axios.post(
+        `${HOST_URL}/api/v1/contact`,
+        contact,
+        axiosConfig
+      );
 
       dispatch({ type: ADD_CONTACT, payload: res.data.contact });
     } catch (err) {
@@ -48,7 +60,7 @@ const ContactContextProvider = ({ children }) => {
 
   const getContacts = async () => {
     try {
-      const res = await axios.get('/api/v1/contact');
+      const res = await axios.get(`${HOST_URL}/api/v1/contact`);
 
       dispatch({ type: GET_CONTACTS, payload: res.data.contacts });
     } catch (err) {
@@ -77,7 +89,7 @@ const ContactContextProvider = ({ children }) => {
 
   const deleteContact = async (contactId) => {
     try {
-      await axios.delete(`/api/v1/contact/${contactId}`);
+      await axios.delete(`${HOST_URL}/api/v1/contact/${contactId}`);
 
       dispatch({ type: DELETE_CONTACT, payload: contactId });
     } catch (err) {

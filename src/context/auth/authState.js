@@ -27,6 +27,14 @@ const initialState = {
   isAuth: false
 };
 
+let HOST_URL = '';
+if (process.env.NODE_ENV === 'production') {
+  // HOST_URL = 'https://phonebookapp-api.herokuapp.com';
+  HOST_URL = process.env.HOST_URL;
+} else if (process.env.NODE_ENV === 'development') {
+  HOST_URL = 'http://localhost:4000';
+}
+
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -35,7 +43,7 @@ const AuthContextProvider = ({ children }) => {
     if (localStorage.getItem('jwt')) setAuthToken(localStorage.getItem('jwt'));
 
     try {
-      const res = await axios.get('/api/v1/user/auth');
+      const res = await axios.get(`${HOST_URL}/api/v1/user/auth`);
       dispatch({ type: USER_LOADED, payload: res.data });
     } catch (err) {
       dispatch({ type: AUTH_ERROR, payload: err.response.data });
@@ -53,7 +61,11 @@ const AuthContextProvider = ({ children }) => {
     dispatch({ type: START_AUTH });
 
     try {
-      const res = await axios.post('/api/v1/user', formData, axiosConfig);
+      const res = await axios.post(
+        `${HOST_URL}/api/v1/user`,
+        formData,
+        axiosConfig
+      );
 
       dispatch({
         type: REGISTER,
@@ -71,7 +83,11 @@ const AuthContextProvider = ({ children }) => {
     dispatch({ type: START_AUTH });
 
     try {
-      const res = await axios.post('/api/v1/user/login', formData, axiosConfig);
+      const res = await axios.post(
+        `${HOST_URL}/api/v1/user/login`,
+        formData,
+        axiosConfig
+      );
 
       console.log(res.data);
       dispatch({
@@ -88,7 +104,7 @@ const AuthContextProvider = ({ children }) => {
 
   const logoutUser = async () => {
     try {
-      const res = await axios.get('/api/v1/user/logout');
+      const res = await axios.get(`${HOST_URL}/api/v1/user/logout`);
       dispatch({ type: LOGOUT, payload: res.data });
     } catch (err) {
       dispatch({ type: LOGOUT_ERROR, payload: err.response.data });
