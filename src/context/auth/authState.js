@@ -29,8 +29,7 @@ const initialState = {
 
 let HOST_URL = '';
 if (process.env.NODE_ENV === 'production') {
-  // HOST_URL = 'https://phonebookapp-api.herokuapp.com';
-  HOST_URL = process.env.HOST_URL;
+  HOST_URL = 'https://phonebookapp-api.herokuapp.com';
 } else if (process.env.NODE_ENV === 'development') {
   HOST_URL = 'http://localhost:4000';
 }
@@ -83,7 +82,11 @@ const AuthContextProvider = ({ children }) => {
     dispatch({ type: START_AUTH });
 
     try {
-      const res = await axios.post(`/api/v1/user/login`, formData, axiosConfig);
+      const res = await axios.post(
+        `${HOST_URL}/api/v1/user/login`,
+        formData,
+        axiosConfig
+      );
 
       console.log(res.data);
       dispatch({

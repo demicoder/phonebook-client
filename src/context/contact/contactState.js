@@ -25,8 +25,7 @@ const initialState = {
 
 let HOST_URL = '';
 if (process.env.NODE_ENV === 'production') {
-  // HOST_URL = 'https://phonebookapp-api.herokuapp.com';
-  HOST_URL = process.env.HOST_URL;
+  HOST_URL = 'https://phonebookapp-api.herokuapp.com';
 } else if (process.env.NODE_ENV === 'development') {
   HOST_URL = 'http://localhost:4000';
 }
