@@ -83,11 +83,7 @@ const AuthContextProvider = ({ children }) => {
     dispatch({ type: START_AUTH });
 
     try {
-      const res = await axios.post(
-        `${HOST_URL}/api/v1/user/login`,
-        formData,
-        axiosConfig
-      );
+      const res = await axios.post(`/api/v1/user/login`, formData, axiosConfig);
 
       console.log(res.data);
       dispatch({
