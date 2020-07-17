@@ -55,6 +55,7 @@ const LoginPage = (props) => {
             placeholder="Enter your E-mail address"
             value={user.email}
             onChange={(e) => onChangeHandler(e)}
+            required
             name="email"
             id="email"
             className="auth-form__input"
@@ -66,6 +67,7 @@ const LoginPage = (props) => {
           <input
             type="password"
             id="password"
+            required
             value={user.password}
             onChange={(e) => onChangeHandler(e)}
             placeholder="Enter your password"
@@ -75,7 +77,11 @@ const LoginPage = (props) => {
         </div>
 
         <div className="form-group">
-          <button type="submit" className="auth-form__action">
+          <button
+            type="submit"
+            className="auth-form__action"
+            disabled={startAuth}
+          >
             <div type="submit" className="auth-form__action--wrap">
               {startAuth ? (
                 <Spinner height="25px" width="25px" strokeWidth="4px" />

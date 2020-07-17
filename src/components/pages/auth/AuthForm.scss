@@ -38,6 +38,7 @@
     width: 100%;
     border: 1px solid $accent;
     height: 60px;
+
     &--wrap {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -48,6 +49,11 @@
     &:hover {
       background: #fff;
       color: $accent;
+    }
+
+    &:disabled {
+      border: 0;
+      background: #ddd;
     }
   }
 }

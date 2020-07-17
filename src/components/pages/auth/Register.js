@@ -40,6 +40,16 @@ const RegisterPage = (props) => {
 
     if (user.name.trim() === '' || user.email.trim() === '') {
       addAlert({ type: 'error', msg: 'All fields are required' });
+    } else if (user.password.length < 6) {
+      addAlert({
+        type: 'error',
+        msg: 'Password must be more than 5 characters'
+      });
+    } else if (user.password !== user.passwordConfirm) {
+      addAlert({
+        type: 'error',
+        msg: 'Passwords must be the same'
+      });
     } else {
       registerUser(user);
     }
@@ -57,6 +67,7 @@ const RegisterPage = (props) => {
             value={user.name}
             onChange={(e) => onChangeHandler(e)}
             id="name"
+            required
             placeholder="Enter your full name"
             name="name"
           />
@@ -70,6 +81,7 @@ const RegisterPage = (props) => {
             value={user.email}
             onChange={(e) => onChangeHandler(e)}
             name="email"
+            required
             id="email"
             className="auth-form__input"
           />
@@ -82,6 +94,7 @@ const RegisterPage = (props) => {
             id="password"
             value={user.password}
             onChange={(e) => onChangeHandler(e)}
+            required
             placeholder="Enter a password longer than 5 characters"
             name="password"
             className="auth-form__input"
@@ -102,7 +115,11 @@ const RegisterPage = (props) => {
         </div>
 
         <div className="form-group">
-          <button type="submit" className="auth-form__action">
+          <button
+            type="submit"
+            className="auth-form__action"
+            disabled={startAuth}
+          >
             <div type="submit" className="auth-form__action--wrap">
               {startAuth ? (
                 <Spinner height="25px" width="25px" strokeWidth="4px" />
