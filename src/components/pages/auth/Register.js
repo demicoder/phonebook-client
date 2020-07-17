@@ -35,7 +35,7 @@ const RegisterPage = (props) => {
   const onChangeHandler = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (user.name.trim() === '' || user.email.trim() === '') {
@@ -51,7 +51,7 @@ const RegisterPage = (props) => {
         msg: 'Passwords must be the same'
       });
     } else {
-      registerUser(user);
+      await registerUser(user);
     }
   };
 

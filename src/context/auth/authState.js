@@ -73,12 +73,13 @@ const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.post('/api/v1/user/login', formData, axiosConfig);
 
+      console.log(res.data);
       dispatch({
         type: LOGIN,
         payload: { user: res.data.user, jwt: res.data.token }
       });
 
-      loadUser();
+      await loadUser();
     } catch (err) {
       dispatch({ type: LOGIN_ERROR, payload: err.response.data });
       clearErrors();

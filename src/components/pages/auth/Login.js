@@ -33,14 +33,14 @@ const LoginPage = (props) => {
     // eslint-disable-next-line
   }, [isAuth, props.history, authError]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (user.email.trim() === '' || user.password.trim() === '') {
       return addAlert({ type: 'error', msg: 'All fields are required' });
     }
 
-    loginUser(user);
+    await loginUser(user);
   };
 
   return (
